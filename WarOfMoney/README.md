@@ -4,7 +4,7 @@ a simple login panel：
 - else register the user with the password
 
 #libs:
-see libs/modules
+see libs/modules<br/>
 egret 3.1.1
 
 #usage:
