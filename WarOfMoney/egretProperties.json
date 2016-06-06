@@ -1,0 +1,59 @@
+{
+	"native": {
+		"path_ignore": []
+	},
+	"publish": {
+		"web": 0,
+		"native": 1,
+		"path": "bin-release"
+	},
+	"egret_version": "3.1.1",
+	"modules": [
+		{
+			"name": "egret"
+		},
+		{
+			"name": "res"
+		},
+		{
+			"name": "socket"
+		},
+		{
+			"name": "tween"
+		},
+		{
+			"name": "game"
+		},
+		{
+			"name": "eui"
+		},
+		{
+			"name": "protobufjs",
+			"path": "E:/libs/fllibs/protobufjs"
+		},
+		{
+			"name": "jsa",
+			"path": "E:/libs/fllibs/jsa"
+		},
+		{
+			"name": "robotlegs_egret",
+			"path": "E:/libs/robotlegs_egret"
+		},
+		{
+			"name": "flgame",
+			"path": "E:/libs/flgame"
+		},
+		{
+			"name": "tiled",
+			"path": "E:/libs/egret-game-library/tiled/libsrc"
+		},
+		{
+			"name": "md5",
+			"path": "E:/libs/egret-game-library/md5/libsrc"
+		},
+		{
+			"name": "greensock",
+			"path": "E:/libs/egret-game-library/greensock/libsrc"
+		}
+	]
+}

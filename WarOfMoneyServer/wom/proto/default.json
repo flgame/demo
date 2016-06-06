@@ -1,0 +1,45 @@
+{
+    "package": "defaultProto",
+    "messages": [
+        {
+            "name": "MLoginReq",
+            "fields": [
+                {
+                    "rule": "required",
+                    "type": "string",
+                    "name": "username",
+                    "id": 1
+                },
+                {
+                    "rule": "required",
+                    "type": "string",
+                    "name": "password",
+                    "id": 2
+                }
+            ]
+        },
+        {
+            "name": "MLoginRet",
+            "fields": [
+                {
+                    "rule": "required",
+                    "type": "int32",
+                    "name": "userid",
+                    "id": 1
+                },
+                {
+                    "rule": "required",
+                    "type": "string",
+                    "name": "username",
+                    "id": 2
+                },
+                {
+                    "rule": "required",
+                    "type": "string",
+                    "name": "hashcode",
+                    "id": 3
+                }
+            ]
+        }
+    ]
+}

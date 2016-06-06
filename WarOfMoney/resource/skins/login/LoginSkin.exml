@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="skins.LoginSkin" width="400" height="300" xmlns:e="http://ns.egret.com/eui">
+	<e:EditableText id="nameT" width="211" height="34" x="175" y="25"/>
+	<e:Label text="username" x="20" y="27"/>
+	<e:EditableText id="passT" displayAsPassword="true" width="211" y="80" height="34" x="175"/>
+	<e:Label y="82" text="password" x="20"/>
+	<e:Button id="loginB" label="login" y="162" horizontalCenter="0"/>
+</e:Skin>

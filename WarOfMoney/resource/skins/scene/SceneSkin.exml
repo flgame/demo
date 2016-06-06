@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<e:Skin class="skins.SceneSkin" width="400" height="300" xmlns:e="http://ns.egret.com/eui" xmlns:w="http://ns.egret.com/wing">
+	<e:Label text="You are welcome " x="74" y="149"/>
+	<e:Label text="Hello" x="109" y="87"/>
+	<e:Label id="nameL" text="user" x="206" y="87"/>
+</e:Skin>

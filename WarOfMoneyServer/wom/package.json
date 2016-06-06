@@ -1,0 +1,25 @@
+{
+  "name": "wom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "wom"
+  ],
+  "author": "feirlau",
+  "license": "ISC",
+  "dependencies": {
+    "bytebuffer": "^5.0.0",
+    "engine.io": "^1.6.4",
+    "express": "^4.13.3",
+    "log4js": "^0.6.28",
+    "protobufjs": "^4.1.2",
+    "sequelize": "^3.13.0",
+    "socket.io": "^1.3.7",
+    "sqlite3": "^3.1.4",
+    "ws": "^0.8.1"
+  }
+}

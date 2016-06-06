@@ -1,0 +1,11 @@
+package defaultProto;
+ 
+message MLoginReq {
+    required string username = 1;
+    required string password = 2;
+}
+message MLoginRet {
+    required int32 userid = 1;
+    required string username = 2;
+    required string hashcode = 3;
+}
