@@ -31,7 +31,7 @@ var GameScene = (function (_super) {
     function GameScene() {
         _super.call(this);
     }
-    var d = __define,c=GameScene;p=c.prototype;
+    var d = __define,c=GameScene,p=c.prototype;
     p.onCreate = function (prop) {
         if (prop === void 0) { prop = null; }
     };
@@ -41,5 +41,5 @@ var GameScene = (function (_super) {
     };
     GameScene.key = "gamescene";
     return GameScene;
-})(GameObject);
-egret.registerClass(GameScene,"GameScene");
+}(GameObject));
+egret.registerClass(GameScene,'GameScene');

@@ -44,7 +44,7 @@ var egret;
             function HTML5NetContext() {
                 _super.call(this);
             }
-            var d = __define,c=HTML5NetContext;p=c.prototype;
+            var d = __define,c=HTML5NetContext,p=c.prototype;
             /**
              * @private
              *
@@ -238,9 +238,9 @@ var egret;
                 return HTML5NetContext._instance;
             };
             return HTML5NetContext;
-        })(egret.HashObject);
+        }(egret.HashObject));
         web.HTML5NetContext = HTML5NetContext;
-        egret.registerClass(HTML5NetContext,"egret.web.HTML5NetContext",["egret.NetContext"]);
+        egret.registerClass(HTML5NetContext,'egret.web.HTML5NetContext',["egret.NetContext"]);
         egret.NetContext = HTML5NetContext;
     })(web = egret.web || (egret.web = {}));
 })(egret || (egret = {}));

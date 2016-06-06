@@ -5,7 +5,7 @@ var game;
         function Actions() {
             _super.apply(this, arguments);
         }
-        var d = __define,c=Actions;p=c.prototype;
+        var d = __define,c=Actions,p=c.prototype;
         Actions.init = function () {
             if (Actions.inited)
                 return;
@@ -22,7 +22,7 @@ var game;
         };
         Actions.inited = false;
         return Actions;
-    })(egret.HashObject);
+    }(egret.HashObject));
     game.Actions = Actions;
-    egret.registerClass(Actions,"game.Actions");
+    egret.registerClass(Actions,'game.Actions');
 })(game || (game = {}));

@@ -695,13 +695,6 @@ declare module eui {
         getItemIndex(item: any): number;
     }
 }
-interface ICollection extends egret.IEventDispatcher {
-    /**
-     *  此集合中的项目数。0 表示不包含项目。
-     *  @readOnly
-     */
-    length: number;
-}
 declare module eui.sys {
     /**
      * @private
@@ -814,12 +807,7 @@ declare module eui.sys {
 declare module eui {
     /**
      * @language en_US
-     * The Component class defines the base class for skinnable components.
-     * The skins used by a Component class are typically child classes of
-     * the Skin class.<p/>
-     *
-     * Associate a skin class with a component class by setting the <code>skinClass</code> style property of the
-     * component class.
+     * The UIComponent class is the base class for all visual components, both skinnable and nonskinnable.
      *
      * @event egret.Event.RESIZE Dispatch when the component is resized.
      * @event eui.UIEvent.MOVE Dispatch when the object has moved.
@@ -832,9 +820,7 @@ declare module eui {
      */
     /**
      * @language zh_CN
-     * Component 类定义可设置外观的组件的基类。Component 类所使用的外观通常是 Skin 类的子类。<p/>
-     *
-     * 通过设置 component 类的 skinClass 样式属性，将 skin 类与 component 类相关联。
+     * UIComponent 类是所有可视组件（可定制皮肤和不可定制皮肤）的基类。
      *
      * @event egret.Event.RESIZE 当UI组件的尺寸发生改变时调度
      * @event eui.UIEvent.MOVE 当UI组件在父级容器中的位置发生改变时调度
@@ -2210,8 +2196,12 @@ declare module eui.sys {
 declare module eui {
     /**
      * @language en_US
+     * The Component class defines the base class for skinnable components.
+     * The skins used by a Component class are typically child classes of
+     * the Skin class.<p/>
      *
-     * @copy eui.UIComponents
+     * Associate a skin class with a component class by setting the <code>skinName</code> property of the
+     * component class.
      * @event egret.Event.COMPLETE Dispatch when <code>skinName</code> property is set the path of external EXML file and the EXML file is resolved.
      *
      * @includeExample  extension/eui/components/ComponentExample.ts
@@ -2221,8 +2211,8 @@ declare module eui {
      */
     /**
      * @language zh_CN
-     *
-     * @copy eui.UIComponents
+     * Component 类定义可设置外观的组件的基类。Component 类所使用的外观通常是 Skin 类的子类。<p/>
+     * 通过设置 component 类的 skinName 属性，将 skin 类与 component 类相关联。
      * @event egret.Event.COMPLETE 当设置skinName为外部exml文件路径时，加载并完成EXML解析后调度。
      *
      * @includeExample  extension/eui/components/ComponentExample.ts
@@ -2837,6 +2827,9 @@ declare module eui {
      * The Button component is a commonly used rectangular button.
      * The Button component looks like it can be pressed.
      * The default skin has a text label and a icon display object.
+     *
+     * @event egret.TouchEvent.TOUCH_CANCEL canceled the touch
+     *
      * @state up Button up state
      * @state down Button down state
      * @state disabled Button disabled state
@@ -2848,6 +2841,9 @@ declare module eui {
     /**
      * @language zh_CN
      * Button 组件是常用的矩形按钮。Button 组件看起来可以按压。默认外观具有一个文本标签和图标显示对象。
+     *
+     * @event egret.TouchEvent.TOUCH_CANCEL 取消触摸事件
+     *
      * @state up 按钮弹起状态
      * @state down 按钮按下状态
      * @state disabled 按钮禁用状态
@@ -2949,6 +2945,23 @@ declare module eui {
          * 指示第一次分派 TouchEvent.TOUCH_BEGIN 时，触摸点是否在按钮上。
          */
         private touchCaptured;
+        /**
+         * @language en_US
+         * This method handles the touchCancle events
+         * @param  The <code>egret.TouchEvent</code> object.
+         * @version Egret 3.0.1
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * 解除触碰事件处理。
+         * @param event 事件 <code>egret.TouchEvent</code> 的对象。
+         * @version Egret 3.0.1
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        protected onTouchCancle(event: egret.TouchEvent): void;
         /**
          * @language en_US
          * This method handles the touch events
@@ -4440,6 +4453,9 @@ declare module eui {
     }
 }
 declare module eui.sys {
+    /**
+     * @private
+     */
     const enum EditableTextKeys {
         promptText = 0,
         textColorUser = 1,
@@ -4503,6 +4519,12 @@ declare module eui {
          *
          * @param value
          */
+        $getText(): string;
+        /**
+         * @private
+         *
+         * @param value
+         */
         $setText(value: string): boolean;
         /**
          * @private
@@ -4543,7 +4565,14 @@ declare module eui {
          * @platform Web,Native
          */
         prompt: string;
+        /**
+         * @private
+         */
         private $promptColor;
+        /**
+         * @private
+         */
+        private $isFocusIn;
         /**
          * @language en_US
          * The color of the defalut string.
@@ -4571,7 +4600,13 @@ declare module eui {
          * @private
          */
         private showPromptText();
+        /**
+         * @private
+         */
         $setTextColor(value: number): boolean;
+        /**
+         * @private
+         */
         $setDisplayAsPassword(value: boolean): boolean;
         /**
          * @private
@@ -4983,6 +5018,21 @@ declare module eui {
          * @platform Web,Native
          */
         protected onPropertyChanged(event: eui.PropertyEvent): void;
+        /**
+         * @language en_US
+         * Whether the scrollbar can be autohide.
+         * @version Egret 3.0.2
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * 是否自动隐藏 scrollbar
+         * @version Egret 3.0.2
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        autoVisibility: boolean;
     }
 }
 declare module eui {
@@ -5393,6 +5443,10 @@ declare module eui {
      * corresponding to the slider's minimum and maximum values.
      * The SliderBase class is a base class for HSlider and VSlider.
      *
+     * @event eui.UIEvent.CHANGE_START Dispatched when the scroll position is going to change
+     * @event eui.UIEvent.CHANGE_END Dispatched when the scroll position changed complete
+     * @event egret.Event.CHANGE Dispatched when the scroll position is changing
+     *
      * @see eui.HSlider
      * @see eui.VSlider
      *
@@ -5405,6 +5459,10 @@ declare module eui {
      * 滑块控件基类，通过使用 SliderBase 类，用户可以在滑块轨道的端点之间移动滑块来选择值。
      * 滑块的当前值由滑块端点（对应于滑块的最小值和最大值）之间滑块的相对位置确定。
      * SliderBase 类是 HSlider 和 VSlider 的基类。
+     *
+     * @event eui.UIEvent.CHANGE_START 滚动位置改变开始
+     * @event eui.UIEvent.CHANGE_END 滚动位置改变结束
+     * @event egret.Event.CHANGE 滚动位置改变的时候
      *
      * @see eui.HSlider
      * @see eui.VSlider
@@ -5978,7 +6036,7 @@ declare module eui {
          *
          * @param context
          */
-        $render(context: egret.sys.RenderContext): void;
+        $render(): void;
         /**
          * @private
          * UIComponentImpl 定义的所有变量请不要添加任何初始值，必须统一在此处初始化。
@@ -6386,6 +6444,21 @@ declare module eui {
          * 指示第一次分派 TouchEvent.TOUCH_BEGIN 时，触摸点是否在按钮上。
          */
         private touchCaptured;
+        /**
+         * @language en_US
+         * Dispatched when an event of some kind occurred that canceled the touch.
+         * @version Egret 3.0.1
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * 由于某个事件取消了触摸时触发
+         * @version Egret 3.0.1
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        protected onTouchCancle(event: egret.TouchEvent): void;
         /**
          * @language en_US
          * Handles <code>TouchEvent.TOUCH_BEGIN</code> events
@@ -6826,6 +6899,10 @@ declare module eui.sys {
          * @private
          */
         touchDownItemRenderer = 7,
+        /**
+         * @private
+         */
+        touchCancle = 8,
     }
 }
 declare module eui {
@@ -6841,6 +6918,7 @@ declare module eui {
      * This event is dispatched when the user interacts with the control.
      *
      * @event eui.ItemTapEvent.ITEM_TAP dispatched when the user tap an item in the control.
+     * @event egret.TouchEvent.TOUCH_CANCEL canceled the touch
      *
      * @version Egret 2.4
      * @version eui 1.0
@@ -6854,6 +6932,7 @@ declare module eui {
      * 注意：此事件仅在索引改变是由用户触摸操作引起时才抛出。
      *
      * @event eui.ItemTapEvent.ITEM_TAP 项呈示器单击事件。
+     * @event egret.TouchEvent.TOUCH_CANCEL 取消触摸事件
      *
      * @version Egret 2.4
      * @version eui 1.0
@@ -7252,7 +7331,7 @@ declare module eui {
          */
         /**
          * @language zh_CN
-         * 数据源刷新
+         * 数据源刷新时触发。此方法不从组件外部调用，仅用于编写自定义组件时，子类覆盖父类的此方法，以便在数据源发生改变时，自动执行一些额外的根据数据刷新视图的操作。
          * @version Egret 2.4
          * @version eui 1.0
          * @platform Web,Native
@@ -7319,6 +7398,25 @@ declare module eui {
          * @platform Web,Native
          */
         protected onRendererTouchBegin(event: egret.TouchEvent): void;
+        /**
+         * @language en_US
+         * Handles <code>egret.TouchEvent.TOUCH_CANCEL</code> events from any of the
+         * item renderers. This method will cancel the handles <code>egret.TouchEvent.TOUCH_END</code> and <code>egret.TouchEvent.TOUCH_TAP</code>.
+         * @param event The <code>egret.TouchEvent</code> object.
+         * @version Egret 3.0.1
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * 侦听项呈示器<code>egret.TouchEvent.TOUCH_CANCEL</code>事件的方法。触发时会取消对舞台<code>egret.TouchEvent.TOUCH_END</code>
+         * 和<code>egret.TouchEvent.TOUCH_TAP</code>事件的侦听。
+         * @param event 事件<code>egret.TouchEvent</code>的对象。
+         * @version Egret 3.0.1
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        protected onRendererTouchCancle(event: egret.TouchEvent): void;
         /**
          * @language en_US
          * Handles <code>egret.TouchEvent.TOUCH_END</code> events and dispatch <code>ItemTapEvent.ITEM_TAP</code> event.
@@ -7591,7 +7689,7 @@ declare module eui {
         private onWindowTouchBegin(event);
         /**
          * @language en_US
-         * [write-only] This property is Usually invoked in resolving an EXML for adding multiple children quickly.
+         * write-only property,This property is Usually invoked in resolving an EXML for adding multiple children quickly.
          *
          * @version Egret 2.4
          * @version eui 1.0
@@ -7599,7 +7697,7 @@ declare module eui {
          */
         /**
          * @language zh_CN
-         * [只写] 此属性通常在 EXML 的解析器中调用，便于快速添加多个子项。
+         * 只写属性，此属性通常在 EXML 的解析器中调用，便于快速添加多个子项。
          * @version Egret 2.4
          * @version eui 1.0
          * @platform Web,Native
@@ -8491,10 +8589,6 @@ declare module eui {
          * @private
          */
         $measureContentBounds(bounds: egret.Rectangle): void;
-        /**
-         * @private
-         */
-        $render(context: egret.sys.RenderContext): void;
         private $fillColor;
         /**
          * @language en_US
@@ -8640,6 +8734,8 @@ declare module eui {
      *
      * @event eui.UIEvent.CHANGE_START Dispatched when the scroll position is going to change
      * @event eui.UIEvent.CHANGE_END Dispatched when the scroll position changed complete
+     * @event egret.Event.CHANGE Dispatched when the scroll position is changing
+     * @event egret.TouchEvent.TOUCH_CANCEL canceled the touch
      *
      * @defaultProperty viewport
      * @version Egret 2.4
@@ -8663,6 +8759,8 @@ declare module eui {
      *
      * @event eui.UIEvent.CHANGE_START 滚动位置改变开始
      * @event eui.UIEvent.CHANGE_END 滚动位置改变结束
+     * @event egret.Event.CHANGE 滚动位置改变的时候
+     * @event egret.TouchEvent.TOUCH_CANCEL 取消触摸事件
      *
      * @defaultProperty viewport
      * @version Egret 2.4
@@ -8726,14 +8824,14 @@ declare module eui {
         bounces: boolean;
         /**
          * @language en_US
-         * Adjust the speed to get out of the slide end.
+         * Adjust the speed to get out of the slide end.When equal to 0,the scroll animation will not be play.
          * @version Egret 2.4
          * @version eui 1.0
          * @platform Web,Native
          */
         /**
          * @language zh_CN
-         * 调节滑动结束时滚出的速度。
+         * 调节滑动结束时滚出的速度。等于0时，没有滚动动画
          * @version Egret 2.4
          * @version eui 1.0
          * @platform Web,Native
@@ -8847,6 +8945,22 @@ declare module eui {
         scrollPolicyH: string;
         /**
          * @language en_US
+         * Stop the scroller animation
+         * @version Egret 3.0.2
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * 停止滚动的动画
+         *
+         * @version Egret 3.0.2
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        stopAnimation(): void;
+        /**
+         * @language en_US
          * The viewport component to be scrolled.
          *
          * @version Egret 2.4
@@ -8883,32 +8997,29 @@ declare module eui {
         protected setSkin(skin: Skin): void;
         /**
          * @private
-         *
+         * @param event
+         */
+        private onTouchBeginCapture(event);
+        /**
+         * @private
          * @param event
          */
         private onTouchEndCapture(event);
         /**
          * @private
-         * 若这个Scroller可以滚动，阻止当前事件，延迟100ms再抛出。
-         */
-        private onTouchBeginCapture(event);
-        /**
-         * @private
-         *
          * @param event
          */
-        private delayDispatchEvent(event);
-        /**
-         * @private
-         *
-         * @param e
-         */
-        private onDelayTouchEventTimer(e?);
+        private onTouchTapCapture(event);
         /**
          * @private
          * 检查当前滚动策略，若有一个方向可以滚动，返回true。
          */
         private checkScrollPolicy();
+        /**
+         * @private
+         * 记录按下的对象，touchCancle时使用
+         */
+        private downTarget;
         /**
          * @private
          *
@@ -8923,10 +9034,23 @@ declare module eui {
         private onTouchMove(event);
         /**
          * @private
-         *
+         * @param event
+         */
+        private onTouchCancel(event);
+        /**
+         * @private
+         * @param event
+         */
+        private dispatchCancelEvent(event);
+        /**
+         * @private
          * @param event
          */
         private onTouchEnd(event);
+        /**
+         * @private
+         */
+        private onRemoveListeners();
         /**
          * @private
          *
@@ -9353,6 +9477,251 @@ declare module eui {
          * ViewStack选中项发生改变
          */
         private onViewStackIndexChange(event);
+    }
+}
+declare module eui.sys {
+    /**
+     * @private
+     */
+    const enum TextInputKeys {
+        prompt = 0,
+        displayAsPassword = 1,
+        textColor = 2,
+        maxChars = 3,
+        maxWidth = 4,
+        maxHeight = 5,
+        text = 6,
+        restrict = 7,
+    }
+}
+declare module eui {
+    /**
+     *
+     */
+    /**
+     * @language en_US
+     * The TextInput is a textfield input component, the user can input and edit the text.
+     *
+     * @version Egret 2.5.7
+     * @version eui 1.0
+     * @platform Web,Native
+     * @includeExample  extension/eui/components/TextInputExample.ts
+     */
+    /**
+     * @language zh_CN
+     * TextInput 是一个文本输入控件，供用户输入和编辑统一格式文本
+     *
+     * @version Egret 2.5.7
+     * @version eui 1.0
+     * @platform Web,Native
+     * @includeExample  extension/eui/components/TextInputExample.ts
+     */
+    class TextInput extends Component {
+        constructor();
+        /**
+         * @private
+         */
+        $TextInput: Object;
+        /**
+         * @language en_US
+         * [SkinPart] The TextInput display
+         * @skinPart
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * [SkinPart] 实体文本输入组件
+         * @skinPart
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        textDisplay: EditableText;
+        /**
+         * @language zh_CN
+         * [SkinPart] When the property of the text is empty, it will show the defalut string.
+         * @skinPart
+         * @version Egret 2.4
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * [SkinPart] 当text属性为空字符串时要显示的文本。
+         * @skinPart
+         * @version Egret 2.4
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        promptDisplay: Label;
+        /**
+         * @copy eui.EditableText#prompt
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @copy eui.EditableText#prompt
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        prompt: string;
+        /**
+         * @copy egret.TextField#displayAsPassword
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @copy egret.TextField#displayAsPassword
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        displayAsPassword: boolean;
+        /**
+         * @copy egret.TextField#textColor
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @copy egret.TextField#textColor
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        textColor: number;
+        /**
+         * @copy egret.TextField#maxChars
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @copy egret.TextField#maxChars
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        maxChars: number;
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        maxWidth: number;
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        maxHeight: number;
+        /**
+         * @copy egret.TextField#text
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @copy egret.TextField#text
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        text: string;
+        /**
+         * @copy egret.TextField#restrict
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @copy egret.TextField#restrict
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        restrict: string;
+        /**
+         * @private
+         */
+        private isFocus;
+        /**
+         * @private
+         * 焦点移入
+         */
+        private focusInHandler(event);
+        /**
+         * @private
+         * 焦点移出
+         */
+        private focusOutHandler(event);
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        protected getCurrentState(): string;
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        protected partAdded(partName: string, instance: any): void;
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 2.5.7
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        protected partRemoved(partName: string, instance: any): void;
+        /**
+         * @private
+         */
+        private textDisplayAdded();
+        /**
+         * @private
+         */
+        private textDisplayRemoved();
     }
 }
 declare module eui {
@@ -9954,13 +10323,13 @@ declare module eui.sys {
          * 开始记录位移变化。注意：当使用完毕后，必须调用 finish() 方法结束记录，否则该对象将无法被回收。
          * @param touchPoint 起始触摸位置，以像素为单位，通常是stageX或stageY。
          */
-        start(touchPoint: number, scrollValue: number, maxScrollValue: number): void;
+        start(touchPoint: number): void;
         /**
          * @private
          * 更新当前移动到的位置
          * @param touchPoint 当前触摸位置，以像素为单位，通常是stageX或stageY。
          */
-        update(touchPoint: number, maxScrollValue: number): void;
+        update(touchPoint: number, maxScrollValue: number, scrollValue: any): void;
         /**
          * @private
          * 停止记录位移变化，并计算出目标值和继续缓动的时间。
@@ -11370,6 +11739,8 @@ declare module eui {
          *
          * @param target the target of event dispatcher.
          * @param eventType The event type; indicates the action that triggered the event.
+         * @param bubbles  Determines whether the Event object participates in the bubbling stage of the event flow. The default value is false.
+         * @param cancelable Determines whether the Event object can be canceled. The default values is false.
          *
          * @version Egret 2.4
          * @version eui 1.0
@@ -11381,12 +11752,14 @@ declare module eui {
          *
          * @param target 事件派发目标。
          * @param eventType 事件类型；指示触发事件的动作。
+         * @param bubbles  确定 Event 对象是否参与事件流的冒泡阶段。默认值为 false。
+         * @param cancelable 确定是否可以取消 Event 对象。默认值为 false。
          *
          * @version Egret 2.4
          * @version eui 1.0
          * @platform Web,Native
          */
-        static dispatchUIEvent(target: egret.IEventDispatcher, eventType: string): boolean;
+        static dispatchUIEvent(target: egret.IEventDispatcher, eventType: string, bubbles?: boolean, cancelable?: boolean): boolean;
     }
 }
 declare module eui.sys {
@@ -11724,6 +12097,36 @@ declare module eui.sys {
     /**
      * @private
      */
+    class EXSetStateProperty extends CodeBase {
+        /**
+         * @private
+         */
+        constructor(target: string, property: string, expression: string);
+        /**
+         * @private
+         * 目标实例名
+         */
+        target: string;
+        /**
+         * @private
+         * 目标属性名
+         */
+        property: string;
+        /**
+         * @private
+         * 绑定表达式
+         */
+        expression: string;
+        /**
+         * @private
+         *
+         * @returns
+         */
+        toCode(): string;
+    }
+    /**
+     * @private
+     */
     class EXBinding extends CodeBase {
         /**
          * @private
@@ -11941,7 +12344,7 @@ declare module eui.sys {
          * @private
          * 格式化值
          */
-        private formatValue(key, value, node);
+        private formatValue(key, value, node, haveState?, stateCallBack?);
         /**
          * @private
          * 格式化字符串
@@ -12058,6 +12461,7 @@ declare module EXML {
      * @platform Web,Native
      */
     var prefixURL: string;
+    var $stage: egret.Stage;
     /**
      * @language en_US
      * Parsing a text of EXML file for a definition of class. You can declare the <code>class</code> property in the root
@@ -14479,6 +14883,105 @@ declare module eui {
          * @inheritDoc
          *
          * @version Egret 2.4
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        remove(host: Skin, parent: egret.DisplayObjectContainer): void;
+        /**
+         * @private
+         * 设置属性值
+         */
+        private setPropertyValue(obj, name, value, valueForType);
+        /**
+         * @private
+         * 转成Boolean值
+         */
+        private toBoolean(value);
+    }
+}
+declare module eui {
+    /**
+     * @language en_US
+     * The SetProperty class specifies a property value that is in effect only
+     * during the parent view state.
+     * You use this class in the <code>overrides</code> property of the State class.
+     *
+     * @version Egret 2.4
+     * @version eui 1.0
+     * @platform Web,Native
+     */
+    /**
+     * @language zh_CN
+     * SetProperty 类指定只在父视图状态期间有效的属性值。可以在 State 类的 overrides 属性中使用该类。
+     *
+     * @version Egret 2.4
+     * @version eui 1.0
+     * @platform Web,Native
+     */
+    class SetStateProperty implements IOverride {
+        /**
+         * @language en_US
+         * Constructor.
+         *
+         * @param target The object whose property is being set.
+         * By default, EUI uses the immediate parent of the State object.
+         * @param name The property to set.
+         * @param value The value of the property in the view state.
+         *
+         * @version Egret 2.4
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        /**
+         * @language zh_CN
+         * 创建一个SetProperty实例。
+         *
+         * @param target 要设置其属性的对象。默认情况下，EUI 使用 State 对象的直接父级。
+         * @param name 要设置的属性。
+         * @param value 视图状态中的属性值。
+         *
+         * @version Egret 2.4
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        constructor(host: any, chain: string[], target: any, prop: string);
+        /**
+         * 皮肤对象
+         * @private
+         */
+        private host;
+        /**
+         * 绑定链
+         * @private
+         */
+        private chain;
+        /**
+         * 要绑定的对象
+         * @private
+         */
+        private target;
+        /**
+         * 要绑定对象的属性
+         * @private
+         */
+        private prop;
+        /**
+         * 上一次的数据
+         * @private
+         */
+        private oldValue;
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 3.0
+         * @version eui 1.0
+         * @platform Web,Native
+         */
+        apply(host: Skin, parent: egret.DisplayObjectContainer): void;
+        /**
+         * @inheritDoc
+         *
+         * @version Egret 3.0
          * @version eui 1.0
          * @platform Web,Native
          */

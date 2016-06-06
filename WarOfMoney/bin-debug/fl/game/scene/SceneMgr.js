@@ -6,7 +6,7 @@ var game;
             _super.call(this);
             this._container = this.createContainer();
         }
-        var d = __define,c=GameSceneBase;p=c.prototype;
+        var d = __define,c=GameSceneBase,p=c.prototype;
         p.createContainer = function () {
             return new egret.DisplayObjectContainer();
         };
@@ -24,15 +24,15 @@ var game;
             }
         );
         return GameSceneBase;
-    })(GameScene);
+    }(GameScene));
     game.GameSceneBase = GameSceneBase;
-    egret.registerClass(GameSceneBase,"game.GameSceneBase");
+    egret.registerClass(GameSceneBase,'game.GameSceneBase');
     var GameSceneMap = (function (_super) {
         __extends(GameSceneMap, _super);
         function GameSceneMap() {
             _super.call(this);
         }
-        var d = __define,c=GameSceneMap;p=c.prototype;
+        var d = __define,c=GameSceneMap,p=c.prototype;
         d(p, "mapId"
             ,function () {
                 return this._mapId;
@@ -67,25 +67,25 @@ var game;
             this.container.addChild(this.tmxTileMap);
         };
         return GameSceneMap;
-    })(GameSceneBase);
+    }(GameSceneBase));
     game.GameSceneMap = GameSceneMap;
-    egret.registerClass(GameSceneMap,"game.GameSceneMap");
+    egret.registerClass(GameSceneMap,'game.GameSceneMap');
     var GameSceneElement = (function (_super) {
         __extends(GameSceneElement, _super);
         function GameSceneElement() {
             _super.call(this);
         }
-        var d = __define,c=GameSceneElement;p=c.prototype;
+        var d = __define,c=GameSceneElement,p=c.prototype;
         return GameSceneElement;
-    })(GameSceneBase);
+    }(GameSceneBase));
     game.GameSceneElement = GameSceneElement;
-    egret.registerClass(GameSceneElement,"game.GameSceneElement");
+    egret.registerClass(GameSceneElement,'game.GameSceneElement');
     var SceneMgr = (function (_super) {
         __extends(SceneMgr, _super);
         function SceneMgr() {
             _super.apply(this, arguments);
         }
-        var d = __define,c=SceneMgr;p=c.prototype;
+        var d = __define,c=SceneMgr,p=c.prototype;
         p.createScenes = function (stage) {
             if (stage === void 0) { stage = null; }
             game.showUI([game.LoginView], game.ToggleInfo.TOGGLE_TYPE_HIDE);
@@ -106,8 +106,8 @@ var game;
             return SceneMgr.instance;
         };
         return SceneMgr;
-    })(egret.HashObject);
+    }(egret.HashObject));
     game.SceneMgr = SceneMgr;
-    egret.registerClass(SceneMgr,"game.SceneMgr");
+    egret.registerClass(SceneMgr,'game.SceneMgr');
     game.sceneMgr = SceneMgr.getInstance();
 })(game || (game = {}));

@@ -32,7 +32,7 @@ var ObjectPool = (function () {
         this._list = [];
         egret.Ticker.getInstance().register(this.onEnterFrame, this);
     }
-    var d = __define,c=ObjectPool;p=c.prototype;
+    var d = __define,c=ObjectPool,p=c.prototype;
     p.onEnterFrame = function (advancedTime) {
         var list = this._list.concat();
         for (var i = 0, length = list.length; i < length; i++) {
@@ -75,6 +75,6 @@ var ObjectPool = (function () {
         return ObjectPool.instance;
     };
     return ObjectPool;
-})();
-egret.registerClass(ObjectPool,"ObjectPool");
+}());
+egret.registerClass(ObjectPool,'ObjectPool');
 var objectPool = ObjectPool.getInstance();

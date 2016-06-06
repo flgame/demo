@@ -3,12 +3,12 @@ var game;
     var LoginConstants = (function () {
         function LoginConstants() {
         }
-        var d = __define,c=LoginConstants;p=c.prototype;
+        var d = __define,c=LoginConstants,p=c.prototype;
         LoginConstants.EVENT_LOGINOK = "EVENT_LOGINOK";
         return LoginConstants;
-    })();
+    }());
     game.LoginConstants = LoginConstants;
-    egret.registerClass(LoginConstants,"game.LoginConstants");
+    egret.registerClass(LoginConstants,'game.LoginConstants');
     var LoginAction = (function (_super) {
         __extends(LoginAction, _super);
         function LoginAction() {
@@ -17,7 +17,7 @@ var game;
                 game.Protocol.LOGIN_RET
             ];
         }
-        var d = __define,c=LoginAction;p=c.prototype;
+        var d = __define,c=LoginAction,p=c.prototype;
         LoginAction.getInstance = function () {
             LoginAction._instance = LoginAction._instance || fl.actionMgr.getActionByClass(LoginAction);
             return LoginAction._instance;
@@ -45,7 +45,7 @@ var game;
             this.sendPack(pack);
         };
         return LoginAction;
-    })(fl.BaseAction);
+    }(fl.BaseAction));
     game.LoginAction = LoginAction;
-    egret.registerClass(LoginAction,"game.LoginAction");
+    egret.registerClass(LoginAction,'game.LoginAction');
 })(game || (game = {}));

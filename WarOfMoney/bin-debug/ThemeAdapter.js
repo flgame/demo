@@ -29,7 +29,7 @@
 var ThemeAdapter = (function () {
     function ThemeAdapter() {
     }
-    var d = __define,c=ThemeAdapter;p=c.prototype;
+    var d = __define,c=ThemeAdapter,p=c.prototype;
     /**
      * 解析主题
      * @param url 待解析的主题url
@@ -51,5 +51,5 @@ var ThemeAdapter = (function () {
         RES.getResByUrl(url, onGetRes, this, RES.ResourceItem.TYPE_TEXT);
     };
     return ThemeAdapter;
-})();
-egret.registerClass(ThemeAdapter,"ThemeAdapter",["eui.IThemeAdapter"]);
+}());
+egret.registerClass(ThemeAdapter,'ThemeAdapter',["eui.IThemeAdapter"]);

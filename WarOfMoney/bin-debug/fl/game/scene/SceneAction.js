@@ -5,9 +5,9 @@ var game;
         function SceneAction() {
             _super.apply(this, arguments);
         }
-        var d = __define,c=SceneAction;p=c.prototype;
+        var d = __define,c=SceneAction,p=c.prototype;
         return SceneAction;
-    })(fl.BaseAction);
+    }(fl.BaseAction));
     game.SceneAction = SceneAction;
-    egret.registerClass(SceneAction,"game.SceneAction");
+    egret.registerClass(SceneAction,'game.SceneAction');
 })(game || (game = {}));

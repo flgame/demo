@@ -5,7 +5,7 @@ var game;
         function GameTime() {
             _super.apply(this, arguments);
         }
-        var d = __define,c=GameTime;p=c.prototype;
+        var d = __define,c=GameTime,p=c.prototype;
         d(GameTime, "serverTime"
             /** seconds */
             ,function () {
@@ -61,7 +61,7 @@ var game;
         GameTime._serverOnlineTime = 0;
         GameTime._setOnlineTimeTick = 0;
         return GameTime;
-    })(egret.HashObject);
+    }(egret.HashObject));
     game.GameTime = GameTime;
-    egret.registerClass(GameTime,"game.GameTime");
+    egret.registerClass(GameTime,'game.GameTime');
 })(game || (game = {}));

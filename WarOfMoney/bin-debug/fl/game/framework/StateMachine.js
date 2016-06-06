@@ -29,7 +29,7 @@
 var StateMachine = (function () {
     function StateMachine() {
     }
-    var d = __define,c=StateMachine;p=c.prototype;
+    var d = __define,c=StateMachine,p=c.prototype;
     p.change = function (state) {
         if (this._state) {
             this._state.onExit();
@@ -38,5 +38,5 @@ var StateMachine = (function () {
         this._state.onEnter();
     };
     return StateMachine;
-})();
-egret.registerClass(StateMachine,"StateMachine");
+}());
+egret.registerClass(StateMachine,'StateMachine');

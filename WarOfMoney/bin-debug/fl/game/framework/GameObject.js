@@ -32,7 +32,7 @@ var GameObject = (function (_super) {
         _super.call(this);
         this.key = "gameObject";
     }
-    var d = __define,c=GameObject;p=c.prototype;
+    var d = __define,c=GameObject,p=c.prototype;
     p.onCreate = function (prop) {
         if (prop === void 0) { prop = null; }
     };
@@ -41,5 +41,5 @@ var GameObject = (function (_super) {
     p.onEnterFrame = function (advancedTime) {
     };
     return GameObject;
-})(egret.HashObject);
-egret.registerClass(GameObject,"GameObject");
+}(egret.HashObject));
+egret.registerClass(GameObject,'GameObject');

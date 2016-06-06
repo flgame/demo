@@ -11,15 +11,15 @@ var game;
             this.viewType = fl.getClassName(viewType);
             this.toggleType = toggleType;
         }
-        var d = __define,c=ToggleInfo;p=c.prototype;
+        var d = __define,c=ToggleInfo,p=c.prototype;
         ToggleInfo.EVENT_TOGGLE_VIEW = "EVENT_TOGGLE_VIEW";
         ToggleInfo.TOGGLE_TYPE_TOGGLE = "toggle";
         ToggleInfo.TOGGLE_TYPE_SHOW = "show";
         ToggleInfo.TOGGLE_TYPE_HIDE = "hide";
         return ToggleInfo;
-    })(egret.HashObject);
+    }(egret.HashObject));
     game.ToggleInfo = ToggleInfo;
-    egret.registerClass(ToggleInfo,"game.ToggleInfo");
+    egret.registerClass(ToggleInfo,'game.ToggleInfo');
     var CompManager = (function (_super) {
         __extends(CompManager, _super);
         function CompManager() {
@@ -35,7 +35,7 @@ var game;
             this.showExcludes = null;
             this._hideList = new fl.Dictionary(true);
         }
-        var d = __define,c=CompManager;p=c.prototype;
+        var d = __define,c=CompManager,p=c.prototype;
         CompManager.getInstance = function () {
             CompManager.instance_ = CompManager.instance_ || new CompManager();
             return CompManager.instance_;
@@ -428,8 +428,8 @@ var game;
             return topComp;
         };
         return CompManager;
-    })(egret.HashObject);
+    }(egret.HashObject));
     game.CompManager = CompManager;
-    egret.registerClass(CompManager,"game.CompManager");
+    egret.registerClass(CompManager,'game.CompManager');
     game.compMgr = CompManager.getInstance();
 })(game || (game = {}));

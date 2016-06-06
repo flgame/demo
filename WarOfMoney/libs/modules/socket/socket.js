@@ -119,6 +119,7 @@ var egret;
              * @private
              */
             this._connected = false;
+            this.connectCount = 0;
             /**
              * @private
              */
@@ -137,7 +138,7 @@ var egret;
             this.socket = new egret.ISocket();
             this.socket.addCallBacks(this.onConnect, this.onClose, this.onSocketData, this.onError, this);
         }
-        var d = __define,c=WebSocket;p=c.prototype;
+        var d = __define,c=WebSocket,p=c.prototype;
         /**
          * @language en_US
          * Connect the socket to the specified host and port number
@@ -155,6 +156,7 @@ var egret;
          * @platform Web,Native
          */
         p.connect = function (host, port) {
+            this.connectCount++;
             this.socket.connect(host, port);
         };
         /**
@@ -162,6 +164,7 @@ var egret;
          * @param url 全地址。如ws://echo.websocket.org:80
          */
         p.connectByUrl = function (url) {
+            this.connectCount++;
             this.socket.connectByUrl(url);
         };
         /**
@@ -184,8 +187,11 @@ var egret;
          *
          */
         p.onConnect = function () {
-            this._connected = true;
-            this.dispatchEventWith(egret.Event.CONNECT);
+            this.connectCount--;
+            if (this.connectCount == 0) {
+                this._connected = true;
+                this.dispatchEventWith(egret.Event.CONNECT);
+            }
         };
         /**
          * @private
@@ -439,9 +445,9 @@ var egret;
          */
         WebSocket.TYPE_BINARY = "webSocketTypeBinary";
         return WebSocket;
-    })(egret.EventDispatcher);
+    }(egret.EventDispatcher));
     egret.WebSocket = WebSocket;
-    egret.registerClass(WebSocket,"egret.WebSocket");
+    egret.registerClass(WebSocket,'egret.WebSocket');
 })(egret || (egret = {}));
 //////////////////////////////////////////////////////////////////////////////////////
 //
@@ -483,7 +489,7 @@ var egret;
                 this.host = "";
                 this.port = 0;
             }
-            var d = __define,c=NativeSocket;p=c.prototype;
+            var d = __define,c=NativeSocket,p=c.prototype;
             p.addCallBacks = function (onConnect, onClose, onSocketData, onError, thisObject) {
                 this.onConnect = onConnect;
                 this.onClose = onClose;
@@ -533,9 +539,9 @@ var egret;
                 this.socket.close();
             };
             return NativeSocket;
-        })();
+        }());
         native.NativeSocket = NativeSocket;
-        egret.registerClass(NativeSocket,"egret.native.NativeSocket",["egret.ISocket"]);
+        egret.registerClass(NativeSocket,'egret.native.NativeSocket',["egret.ISocket"]);
         if (egret.Capabilities.runtimeType == egret.RuntimeType.NATIVE) {
             egret.ISocket = NativeSocket;
         }
@@ -584,7 +590,7 @@ var egret;
                     egret.$error(3100);
                 }
             }
-            var d = __define,c=HTML5WebSocket;p=c.prototype;
+            var d = __define,c=HTML5WebSocket,p=c.prototype;
             p.addCallBacks = function (onConnect, onClose, onSocketData, onError, thisObject) {
                 this.onConnect = onConnect;
                 this.onClose = onClose;
@@ -636,9 +642,9 @@ var egret;
                 this.socket.close();
             };
             return HTML5WebSocket;
-        })();
+        }());
         web.HTML5WebSocket = HTML5WebSocket;
-        egret.registerClass(HTML5WebSocket,"egret.web.HTML5WebSocket",["egret.ISocket"]);
+        egret.registerClass(HTML5WebSocket,'egret.web.HTML5WebSocket',["egret.ISocket"]);
         if (egret.Capabilities.runtimeType == egret.RuntimeType.WEB) {
             egret.ISocket = HTML5WebSocket;
         }

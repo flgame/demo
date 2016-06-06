@@ -29,11 +29,11 @@
 var State = (function () {
     function State() {
     }
-    var d = __define,c=State;p=c.prototype;
+    var d = __define,c=State,p=c.prototype;
     p.onEnter = function () {
     };
     p.onExit = function () {
     };
     return State;
-})();
-egret.registerClass(State,"State");
+}());
+egret.registerClass(State,'State');

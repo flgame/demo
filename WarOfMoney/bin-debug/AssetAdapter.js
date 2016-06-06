@@ -29,7 +29,7 @@
 var AssetAdapter = (function () {
     function AssetAdapter() {
     }
-    var d = __define,c=AssetAdapter;p=c.prototype;
+    var d = __define,c=AssetAdapter,p=c.prototype;
     /**
      * @language zh_CN
      * 解析素材
@@ -55,5 +55,5 @@ var AssetAdapter = (function () {
         }
     };
     return AssetAdapter;
-})();
-egret.registerClass(AssetAdapter,"AssetAdapter",["eui.IAssetAdapter"]);
+}());
+egret.registerClass(AssetAdapter,'AssetAdapter',["eui.IAssetAdapter"]);

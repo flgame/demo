@@ -5,7 +5,7 @@ var game;
         function Modules() {
             _super.apply(this, arguments);
         }
-        var d = __define,c=Modules;p=c.prototype;
+        var d = __define,c=Modules,p=c.prototype;
         Modules.init = function (startupFuns) {
             if (startupFuns === void 0) { startupFuns = null; }
             if (Modules.inited)
@@ -30,7 +30,7 @@ var game;
         };
         Modules.inited = false;
         return Modules;
-    })(egret.HashObject);
+    }(egret.HashObject));
     game.Modules = Modules;
-    egret.registerClass(Modules,"game.Modules");
+    egret.registerClass(Modules,'game.Modules');
 })(game || (game = {}));

@@ -8,7 +8,7 @@ var ui;
             this.isLoading_ = false;
             this.title_ = "";
         }
-        var d = __define,c=BaseStaticComp;p=c.prototype;
+        var d = __define,c=BaseStaticComp,p=c.prototype;
         p.showComp = function (parent, modal) {
             if (parent === void 0) { parent = null; }
             if (modal === void 0) { modal = false; }
@@ -209,15 +209,15 @@ var ui;
             }
         );
         return BaseStaticComp;
-    })(eui.Component);
+    }(eui.Component));
     ui.BaseStaticComp = BaseStaticComp;
-    egret.registerClass(BaseStaticComp,"ui.BaseStaticComp",["ui.IPopUpComp"]);
+    egret.registerClass(BaseStaticComp,'ui.BaseStaticComp',["ui.IPopUpComp"]);
     var BasePopUpComp = (function (_super) {
         __extends(BasePopUpComp, _super);
         function BasePopUpComp() {
             _super.call(this);
         }
-        var d = __define,c=BasePopUpComp;p=c.prototype;
+        var d = __define,c=BasePopUpComp,p=c.prototype;
         p.showComp = function (parent, modal) {
             if (parent === void 0) { parent = null; }
             if (modal === void 0) { modal = false; }
@@ -237,7 +237,7 @@ var ui;
             ui.UIGlobal.popup.bringToFront(this);
         };
         return BasePopUpComp;
-    })(BaseStaticComp);
+    }(BaseStaticComp));
     ui.BasePopUpComp = BasePopUpComp;
-    egret.registerClass(BasePopUpComp,"ui.BasePopUpComp");
+    egret.registerClass(BasePopUpComp,'ui.BasePopUpComp');
 })(ui || (ui = {}));

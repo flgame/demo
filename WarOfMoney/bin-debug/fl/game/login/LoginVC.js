@@ -5,7 +5,7 @@ var game;
         function LoginMediator() {
             _super.apply(this, arguments);
         }
-        var d = __define,c=LoginMediator;p=c.prototype;
+        var d = __define,c=LoginMediator,p=c.prototype;
         p.onRegister = function () {
             _super.prototype.onRegister.call(this);
             this.addContextListener(game.LoginConstants.EVENT_LOGINOK, this.loginOk, this);
@@ -14,16 +14,16 @@ var game;
             game.sceneMgr.createScenes();
         };
         return LoginMediator;
-    })(fl.Mediator);
+    }(fl.Mediator));
     game.LoginMediator = LoginMediator;
-    egret.registerClass(LoginMediator,"game.LoginMediator");
+    egret.registerClass(LoginMediator,'game.LoginMediator');
     var LoginView = (function (_super) {
         __extends(LoginView, _super);
         function LoginView() {
             _super.call(this);
             this.skinName = "skins.LoginSkin";
         }
-        var d = __define,c=LoginView;p=c.prototype;
+        var d = __define,c=LoginView,p=c.prototype;
         p.createChildren = function () {
             _super.prototype.createChildren.call(this);
             this.loginB.addEventListener(egret.TouchEvent.TOUCH_TAP, this.onLogin, this);
@@ -35,7 +35,7 @@ var game;
             game.LoginAction.getInstance().login(req);
         };
         return LoginView;
-    })(ui.BaseStaticComp);
+    }(ui.BaseStaticComp));
     game.LoginView = LoginView;
-    egret.registerClass(LoginView,"game.LoginView");
+    egret.registerClass(LoginView,'game.LoginView');
 })(game || (game = {}));

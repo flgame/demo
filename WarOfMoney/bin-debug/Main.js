@@ -30,8 +30,9 @@ var Main = (function (_super) {
     __extends(Main, _super);
     function Main() {
         _super.apply(this, arguments);
+        this.loadI = 0;
     }
-    var d = __define,c=Main;p=c.prototype;
+    var d = __define,c=Main,p=c.prototype;
     p.createChildren = function () {
         _super.prototype.createChildren.call(this);
         //inject the custom material parser
@@ -56,11 +57,15 @@ var Main = (function (_super) {
         RES.removeEventListener(RES.ResourceEvent.CONFIG_COMPLETE, this.onConfigComplete, this);
         // load skin theme configuration file, you can manually modify the file. And replace the default skin.
         //加载皮肤主题配置文件,可以手动修改这个文件。替换默认皮肤。
-        new eui.Theme("resource/default.thm.json", this.stage);
+        var theme = new eui.Theme("resource/default.thm.json", this.stage);
+        theme.addEventListener(egret.Event.COMPLETE, this.onThemeLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
         RES.addEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
         RES.loadGroup("preload");
+    };
+    p.onThemeLoadComplete = function (e) {
+        this.checkLoad();
     };
     /**
      * preload资源组加载完成
@@ -74,6 +79,12 @@ var Main = (function (_super) {
             RES.removeEventListener(RES.ResourceEvent.GROUP_COMPLETE, this.onResourceLoadComplete, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_LOAD_ERROR, this.onResourceLoadError, this);
             RES.removeEventListener(RES.ResourceEvent.GROUP_PROGRESS, this.onResourceProgress, this);
+            this.checkLoad();
+        }
+    };
+    p.checkLoad = function () {
+        this.loadI++;
+        if (this.loadI == 2) {
             this.stage.removeChild(this.loadingView);
             this.createScene();
         }
@@ -108,5 +119,5 @@ var Main = (function (_super) {
         fl.netMgr.addNet("127.0.0.1", 3008);
     };
     return Main;
-})(eui.UILayer);
-egret.registerClass(Main,"Main");
+}(eui.UILayer));
+egret.registerClass(Main,'Main');

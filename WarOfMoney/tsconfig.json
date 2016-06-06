@@ -1,15 +1,9 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES5",
-        "outDir": "bin-debug",
-        "rootDir": "src",
-        "sourceMap": true,
-        "declaration": true,
-        "listFiles": true
-    },
-     "exclude": [
-         "bin",
-         "bin-debug"
-     ]
+   "compilerOptions": {
+      "target": "es5"
+   },
+   "exclude": [
+      "node_modules",
+      "bin-debug"
+   ]
 }

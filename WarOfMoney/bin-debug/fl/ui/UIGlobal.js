@@ -5,7 +5,7 @@ var ui;
         function UIGlobal() {
             _super.apply(this, arguments);
         }
-        var d = __define,c=UIGlobal;p=c.prototype;
+        var d = __define,c=UIGlobal,p=c.prototype;
         UIGlobal.init = function (s, compL, popupL, topL) {
             if (compL === void 0) { compL = null; }
             if (popupL === void 0) { popupL = null; }
@@ -44,7 +44,7 @@ var ui;
             }
         };
         return UIGlobal;
-    })(egret.HashObject);
+    }(egret.HashObject));
     ui.UIGlobal = UIGlobal;
-    egret.registerClass(UIGlobal,"ui.UIGlobal");
+    egret.registerClass(UIGlobal,'ui.UIGlobal');
 })(ui || (ui = {}));

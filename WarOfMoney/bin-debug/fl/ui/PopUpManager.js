@@ -9,11 +9,11 @@ var ui;
             g.beginFill(0x0, .5);
             g.drawRect(0, 0, 100, 100);
         }
-        var d = __define,c=DefaultModalOverlay;p=c.prototype;
+        var d = __define,c=DefaultModalOverlay,p=c.prototype;
         return DefaultModalOverlay;
-    })(egret.Sprite);
+    }(egret.Sprite));
     ui.DefaultModalOverlay = DefaultModalOverlay;
-    egret.registerClass(DefaultModalOverlay,"ui.DefaultModalOverlay");
+    egret.registerClass(DefaultModalOverlay,'ui.DefaultModalOverlay');
     var PopUpData = (function (_super) {
         __extends(PopUpData, _super);
         function PopUpData(popUp, overlay) {
@@ -22,7 +22,7 @@ var ui;
             this._popUp = popUp;
             this._modalOverlay = overlay;
         }
-        var d = __define,c=PopUpData;p=c.prototype;
+        var d = __define,c=PopUpData,p=c.prototype;
         d(p, "isModal"
             ,function () {
                 return this._modalOverlay != null;
@@ -45,9 +45,9 @@ var ui;
             }
         );
         return PopUpData;
-    })(egret.HashObject);
+    }(egret.HashObject));
     ui.PopUpData = PopUpData;
-    egret.registerClass(PopUpData,"ui.PopUpData");
+    egret.registerClass(PopUpData,'ui.PopUpData');
     var PopUpManager = (function (_super) {
         __extends(PopUpManager, _super);
         function PopUpManager(container) {
@@ -62,7 +62,7 @@ var ui;
             this._height = this._container.stage.stageHeight;
             this._popUps = new fl.Dictionary();
         }
-        var d = __define,c=PopUpManager;p=c.prototype;
+        var d = __define,c=PopUpManager,p=c.prototype;
         p.setSize = function (width, height) {
             this._width = width;
             this._height = height;
@@ -212,7 +212,7 @@ var ui;
             return overlay;
         };
         return PopUpManager;
-    })(egret.HashObject);
+    }(egret.HashObject));
     ui.PopUpManager = PopUpManager;
-    egret.registerClass(PopUpManager,"ui.PopUpManager");
+    egret.registerClass(PopUpManager,'ui.PopUpManager');
 })(ui || (ui = {}));
