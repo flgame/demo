@@ -5,6 +5,7 @@ a simple login panel：
 
 #libs:
 see libs/modules
+egret 3.1.1
 
 #usage:
 1. register the ui module by: register.registerView(LoginView,null,LoginMediator);
