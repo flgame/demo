@@ -18,8 +18,8 @@ see fl/game/utils.ts
 see fl/game/Actions.ts
 
 4. to add a new module, you need(mvc):
-> actions to process network and data: XXX extends fl.BaseAction
-> view to process the ui: XXX extends ui.BaseStaticComp
-> mediator to process the updates by event： XXX extends fl.Mediator
+> actions to process network and data: XXX extends fl.BaseAction<br />     
+> view to process the ui: XXX extends ui.BaseStaticComp<br />     
+> mediator to process the updates by event： XXX extends fl.Mediator<br />     
 see fl/game/login or fl/game/scene
 
